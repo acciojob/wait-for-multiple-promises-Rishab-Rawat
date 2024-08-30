@@ -1,7 +1,11 @@
-//your JS code here. If required.
 document.addEventListener('DOMContentLoaded', function() {
     const table = document.getElementById('resultsTable');
     const loadingRow = document.getElementById('loadingRow');
+
+    if (!loadingRow) {
+        console.error('Loading row not found!');
+        return; // Exit early if loading row is not found
+    }
 
     // Function to create a promise that resolves after a random time between 1 and 3 seconds
     function createRandomPromise(index) {
@@ -45,5 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalCell2 = totalRow.insertCell(1);
         totalCell1.textContent = 'Total';
         totalCell2.textContent = `${totalTime} seconds`;
+    }).catch(error => {
+        console.error('Error during promise execution:', error);
     });
 });
